@@ -1,0 +1,22 @@
+version = "0.0.4"
+ext.name = "api-product"
+
+jib {
+    from {
+        image = "eclipse-temurin:11.0.14_9-jre-focal"
+    }
+    to {
+        image = "kijaha/$name"
+        tags = ["${project.version}"]
+    }
+    container {
+        mainClass = "com.cosmos.product.ApiProductApplication"
+        ports = ["8100"]
+        volumes = ["/tmp"]
+        creationTime = "USE_CURRENT_TIMESTAMP"
+    }
+}
+
+dependencies {
+    implementation "org.springframework.boot:spring-boot-starter-web"
+}

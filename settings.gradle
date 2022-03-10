@@ -1,3 +1,5 @@
 rootProject.name = 'cosmos'
-include 'api-service-discovery'
+include 'api-gateway'
+include 'api-product'
+include 'api-order'
 

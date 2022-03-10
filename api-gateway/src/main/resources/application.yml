@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: api-gateway
+  profiles:
+    default: local
+server:
+  port: 8000
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  cloud:
+    gateway:
+      routes:
+        - id: api-product
+          uri: http://localhost:8100
+          predicates:
+            - Path=/api/product/**
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  cloud:
+    gateway:
+      routes:
+        - id: api-product
+          uri: http://api-product.default.svc.cluster.local:8100
+          predicates:
+            - Path=/api/product/**

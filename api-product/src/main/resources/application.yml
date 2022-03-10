@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: cosmos-api-product
+  profiles:
+    default: local
+server:
+  port: 8100
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+    logfile:
+      external-file: logs/product/product.log
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: ["prometheus", "logfile"]
+logging:
+  file:
+    name: "product.log"
+    path: "./../logs/product/"
+---
+spring:
+  config:
+    activate:
+      on-profile:  local
+---
+spring:
+  config:
+    activate:
+      on-profile:  dev
